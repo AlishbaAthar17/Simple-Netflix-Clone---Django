@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #000;
+            /* background: url("{% static 'loginbg.jpg' %}") no-repeat top center fixed; */
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: url("{% static 'loginbg.jpg' %}") no-repeat top center fixed;
+            opacity: 0.5;
+        }
+
+        header {
+            position: fixed;
+            z-index: 1;
+            padding: 25px 60px;
+        }
+
+        header a img {
+            width: 160px;
+        }
+
+        .form-wrapper {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 430px;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 60px;
+            border-radius: 4px;
+            transform: translate(-50%, -50%);
+        }
+
+        .form-wrapper h2 {
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .form-wrapper form {
+            margin: 25px 0 65px;
+        }
+
+        input[type=text],
+        input[type=password],
+        textarea {
+            border: 1px solid #000000;
+            background-color: #363636;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        label {
+            padding-top: 10px !important;
+            display: block;
+        }
+
+        a,
+        p {
+            color: #999999;
+        }
+
+        small {
+            color: #999999;
+        }
+
+        .button {
+            border: 1px solid #000;
+            background-color: #de0611;
+            color: #fff;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            width: 105%;
+        }
+
+        label{
+            padding-top: 10px !important;
+            display: block;
+            color: #999999;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo"><img src="{% static 'logo.png' %}" alt=""></a>
+    </header>
+
+    <div class="header-bar">
+        <h2>Register</h2>
+    </div>
+
+    <div class="form-wrapper">
+        <h2>Register</h2>
+        <div class="card1">
+            <form method="POST">
+                {% csrf_token %}
+                <label for="">{{form.username.label}}</label>
+                {{form.username}}
+
+                <label for="">{{form.password1.label}}</label>
+                {{form.password1}}
+
+                <label for="">{{form.password2.label}}</label>
+                {{form.password2}}
+
+                <input style="margin-top: 10px;" class="button" type="submit" value="Register">
+            </form>
+            <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        </div>
+    </div>
+</body>
+
+</html>
